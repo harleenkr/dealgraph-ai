@@ -8,6 +8,11 @@
 
 DealGraph AI is a next-generation, multi-agent enterprise platform designed to automate and augment the analysis of complex software deals, Master Services Agreements (MSAs), and commercial contracts. By leveraging parallel AI agents, the platform dramatically accelerates the deal review process, identifies hidden risks, and empowers Sales, Legal, and Deal Desk teams to close compliant deals faster.
 
+## The Problem
+Enterprise software deals often stall during the "Legal & Deal Desk" review phase. When a sales rep submits a custom Master Services Agreement (MSA) with non-standard pricing, discounts, and complex liability clauses, it requires manual review from multiple siloed departments (Legal, Finance, Compliance, Security). This manual, sequential process causes bottlenecks, delays revenue recognition, and introduces human error when cross-referencing dense 50-page legal documents against internal pricing playbooks.
+
+## The Solution
+DealGraph AI acts as an autonomous, parallel-processing Deal Desk. Instead of sequential human reviews, the platform spawns a team of specialized AI Agents (powered by Gemini 2.5 Flash) that simultaneously analyze the uploaded MSA and deal metadata. It instantly flags revenue risks, compliance violations, and security issues. The system synthesizes these findings into a C-level Executive Brief, assigns a unified Risk Score, and even generates visual Knowledge Graphs and Microsoft Word redlines automatically. This allows human approvers to shift from "finding the needle in the haystack" to simply "reviewing and approving" the AI's rigorous work.
 <img width="1891" height="896" alt="image" src="https://github.com/user-attachments/assets/9e5e162c-af12-4513-821f-871de756a5f9" />
 
 ## How to Use DealGraph AI (End-to-End Workflow)
