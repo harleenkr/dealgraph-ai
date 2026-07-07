@@ -89,6 +89,21 @@ The Knowledge Graph generation executes at the very end of the AI pipeline, *aft
 3.  **JSON Structuring:** The unstructured text is converted into a deterministic, standardized JSON payload representing nodes and edges.
 4.  **Client-Side Rendering:** The FastAPI backend sends this JSON to the React frontend, where `React Flow` renders it into a physics-based, interactive network graph. Users can physically drag nodes around to explore the interconnected risks of the deal.
 
+**Knowledge Graph Architecture Flow:**
+```mermaid
+sequenceDiagram
+    participant O as Orchestrator
+    participant G as Gemini 2.5 Flash
+    participant F as React Flow (Frontend)
+    
+    O->>G: Send MSA Text & Agent Findings
+    Note over G: Entity Extraction<br/>(Customer, Risks, Clauses)
+    Note over G: Relationship Mapping<br/>(AGREES_TO, LIMITS)
+    G-->>O: Return JSON (Nodes & Edges)
+    O->>F: Serve JSON Payload
+    Note over F: Render Physics-Based<br/>Interactive Network Graph
+```
+
 <img width="1622" height="477" alt="image" src="https://github.com/user-attachments/assets/371c596d-de54-492d-a846-eadeab520efc" />
 
 ### 6. AI Risk Score & Slack Warnings
@@ -154,6 +169,7 @@ graph TD
             A2["⚖️ Legal Agent"]:::agent
             A3["🛡️ Compliance Agent"]:::agent
             A4["✅ Trust & Safety Agent"]:::agent
+            KG["🕸️ Knowledge Graph<br>Generator"]:::agent
         end
         
         DB[("🗄️ SQLite / BigQuery<br>(Analytics & Deals)")]:::database
@@ -176,6 +192,9 @@ graph TD
     
     A1 & A2 & A3 --> A4
     A4 -- "Final Risk Score" --> Orchestrator
+    
+    Orchestrator -- "Triggers Generation" --> KG
+    KG -- "JSON Edges/Nodes" --> Orchestrator
     
     Orchestrator -- "Reads/Writes" --> DB
     API -- "Returns Results" --> UI
