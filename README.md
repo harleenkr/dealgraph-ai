@@ -4,7 +4,7 @@ DealGraph AI is a next-generation, multi-agent enterprise platform designed to a
 
 <img width="1891" height="896" alt="image" src="https://github.com/user-attachments/assets/9e5e162c-af12-4513-821f-871de756a5f9" />
 
-## 💡 How to Use DealGraph AI (End-to-End Workflow)
+## How to Use DealGraph AI (End-to-End Workflow)
 
 If you are a Sales Rep, Deal Desk Analyst, or Legal Counsel, this is your typical workflow from start to finish:
 
@@ -15,6 +15,8 @@ If you are a Sales Rep, Deal Desk Analyst, or Legal Counsel, this is your typica
 5.  **Explore the Graph:** If a risk is flagged, use the interactive **Dynamic Knowledge Graph** to trace exactly how the requested discount or a specific liability clause triggered the warning.
 6.  **Human-in-the-Loop Sign Off:** As an authorized reviewer, navigate to the Human Evaluation Panel. You can either **Approve AI Analysis** (finalizing the deal) or manually **Override Analysis** if you have off-system context, logging your justification for compliance.
 7.  **Take Action:** Download the automatically generated **Redlined .docx file** to send back to the customer, or click **Export (PDF)** to generate a pristine, timestamped audit report of the entire AI analysis.
+
+<img width="1872" height="892" alt="image" src="https://github.com/user-attachments/assets/a019ed96-3381-4895-bf76-a482f40b53d5" />
 
 ## Step-by-Step Product Walkthrough
 
@@ -56,6 +58,8 @@ While DealGraph AI automates the heavy lifting, human oversight remains critical
 *   **Approve AI Analysis:** Clicking this button confirms agreement with the AI's findings. The system logs the user's approval, finalizes the deal status as "Approved," and updates the historical database, allowing the deal to proceed to the next stage.
 *   **Override Analysis:** If the reviewer disagrees with the AI (e.g., they have off-system context that mitigates a flagged risk), they can click this button to manually override a "Rejected" or "High Risk" status. The system requires an override justification, records the user's IAM role, and logs the manual intervention for compliance and audit trails.
 
+<img width="1531" height="321" alt="image" src="https://github.com/user-attachments/assets/7d6f7c8b-f9df-4188-9f40-7c3f70f87ab9" />
+
 ### 5. Dynamic Knowledge Graph
 A defining feature of DealGraph AI. Instead of reading a 50-page MSA, users can visually explore the deal structure.
 *   **How it is created:** The backend AI extracts entities (Customer, Deal, Clauses, Risks) and relationships ("AGREES_TO", "CONTAINS_RISK") from the MSA text and deal metadata.
@@ -86,10 +90,6 @@ To accelerate the deal cycle, DealGraph AI acts on its findings:
 *   **Draft Email:** Automatically drafts a contextual email to the prospect or internal VP, summarizing the sticking points and proposing the generated redlines.
 
 <img width="1532" height="341" alt="image" src="https://github.com/user-attachments/assets/7a38e44e-0e00-4206-8c45-314c00ac471e" />
-
-<img width="1531" height="321" alt="image" src="https://github.com/user-attachments/assets/7d6f7c8b-f9df-4188-9f40-7c3f70f87ab9" />
-
-<img width="1872" height="892" alt="image" src="https://github.com/user-attachments/assets/a019ed96-3381-4895-bf76-a482f40b53d5" />
 
 ### 9. Historical Analytics Dashboard
 A dedicated tab for Deal Desk managers to track performance over time, powered by `Recharts`.
@@ -148,7 +148,7 @@ To deploy this project yourself:
 4. Set the build source directory to `dealgraph-ai-backend` for the API service.
 5. Create a second service pointing the source to `dealgraph-ai-frontend`. **Note:** You must set the `VITE_API_URL` environment variable on the frontend service to point to the backend's live URL.
 
-## 🛠️ Local Development
+## Local Development
 
 ### Prerequisites
 *   Node.js (v20+)
