@@ -214,7 +214,7 @@ graph TD
 *   **Styling:** A premium, "Deep Space" dark mode UI utilizing custom CSS, glassmorphism, and responsive grid layouts. No heavy CSS frameworks.
 *   **State Management:** React Hooks (`useState`, `useEffect`) manage the complex state transitions between the intake form, the loading timeline, and the final results display.
 
-### 🤖 AI Infrastructure
+### AI Infrastructure
 DealGraph AI's intelligence layer is powered by a robust, multi-modal infrastructure:
 *   **Foundational Models:** Utilizes **Gemini 2.5 Flash** for high-speed, parallel reasoning across all agents (Legal, Deal Desk, Compliance, Trust & Safety). The model is prompted dynamically based on the specific agent's persona and context.
 *   **Orchestration Engine:** A custom-built asynchronous Python orchestrator manages the lifecycle of the agents. It handles fan-out (spawning multiple agents to analyze the same MSA simultaneously) and fan-in (synthesizing the results into a unified Executive Brief).
@@ -223,7 +223,7 @@ DealGraph AI's intelligence layer is powered by a robust, multi-modal infrastruc
 
 ---
 
-## ☁️ Google Cloud Deployment & Agent Ecosystem
+## Google Cloud Deployment & Agent Ecosystem
 
 DealGraph AI is designed as a cloud-native application, deeply integrated with the Google Cloud ecosystem, Model Context Protocol (MCP), and BigQuery.
 
