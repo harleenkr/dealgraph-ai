@@ -117,6 +117,59 @@ A dedicated tab for Deal Desk managers to track performance over time, powered b
 
 The application is built using a modern, decoupled architecture designed for scalability and cloud deployment.
 
+### System Architecture Diagram
+```mermaid
+graph TD
+    %% Define Styles
+    classDef frontend fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff;
+    classDef backend fill:#10b981,stroke:#047857,stroke-width:2px,color:#fff;
+    classDef agent fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff;
+    classDef database fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#fff;
+    classDef external fill:#ef4444,stroke:#b91c1c,stroke-width:2px,color:#fff;
+
+    %% Nodes
+    User(["👤 End User (Sales/Legal)"])
+    
+    subgraph "Google Cloud Run Boundary"
+        UI["💻 React / Vite Frontend<br>(Client-Side App)"]:::frontend
+        API["⚙️ FastAPI Backend<br>(Python Orchestrator)"]:::backend
+        
+        subgraph "Gemini 2.5 Flash Multi-Agent System"
+            Orchestrator{"Multi-Agent<br>Controller"}:::backend
+            A1["📊 Deal Desk Agent"]:::agent
+            A2["⚖️ Legal Agent"]:::agent
+            A3["🛡️ Compliance Agent"]:::agent
+            A4["✅ Trust & Safety Agent"]:::agent
+        end
+        
+        DB[("🗄️ SQLite / BigQuery<br>(Analytics & Deals)")]:::database
+    end
+    
+    subgraph "MCP Servers"
+        MCP1["☁️ CloudRun MCP<br>(Health Checks)"]:::external
+        MCP2["📚 Developer Knowledge MCP<br>(Regulatory Docs)"]:::external
+    end
+    
+    %% Relationships
+    User -- "Uploads MSA & Data" --> UI
+    UI -- "REST / JSON" --> API
+    API -- "Triggers Analysis" --> Orchestrator
+    
+    Orchestrator -- "Parallel Exec" --> A1
+    Orchestrator -- "Parallel Exec" --> A2
+    Orchestrator -- "Parallel Exec" --> A3
+    Orchestrator -- "Supervises" --> A4
+    
+    A1 & A2 & A3 --> A4
+    A4 -- "Final Risk Score" --> Orchestrator
+    
+    Orchestrator -- "Reads/Writes" --> DB
+    API -- "Returns Results" --> UI
+    
+    A2 & A3 -. "Queries Docs" .-> MCP2
+    A4 -. "Monitors Infra" .-> MCP1
+```
+
 ### Backend (Python / FastAPI)
 *   **Framework:** FastAPI for high-performance asynchronous API endpoints.
 *   **AI Engine:** Integrates with Gemini 2.5 Flash for agentic reasoning, entity extraction (for the Knowledge Graph), and natural language generation.
