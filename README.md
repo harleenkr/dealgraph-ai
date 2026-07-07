@@ -128,6 +128,13 @@ The application is built using a modern, decoupled architecture designed for sca
 *   **Styling:** A premium, "Deep Space" dark mode UI utilizing custom CSS, glassmorphism, and responsive grid layouts. No heavy CSS frameworks.
 *   **State Management:** React Hooks (`useState`, `useEffect`) manage the complex state transitions between the intake form, the loading timeline, and the final results display.
 
+### 🤖 AI Infrastructure
+DealGraph AI's intelligence layer is powered by a robust, multi-modal infrastructure:
+*   **Foundational Models:** Utilizes **Gemini 2.5 Flash** for high-speed, parallel reasoning across all agents (Legal, Deal Desk, Compliance, Trust & Safety). The model is prompted dynamically based on the specific agent's persona and context.
+*   **Orchestration Engine:** A custom-built asynchronous Python orchestrator manages the lifecycle of the agents. It handles fan-out (spawning multiple agents to analyze the same MSA simultaneously) and fan-in (synthesizing the results into a unified Executive Brief).
+*   **Knowledge Graph Generation:** The AI extracts nested entities (e.g., `Liability Cap`, `Customer`, `Discount`) and edge relationships (e.g., `LIMITS`, `REQUESTS`) directly from unstructured PDF text, structuring them into a deterministic JSON format that `React Flow` can render visually.
+*   **Model Context Protocol (MCP):** Connects the agents to external tools and data sources securely. This enables the agents to break out of their static training data and retrieve live information (like current SOC2 guidelines) during their analysis.
+
 ---
 
 ## ☁️ Google Cloud Deployment & Agent Ecosystem
