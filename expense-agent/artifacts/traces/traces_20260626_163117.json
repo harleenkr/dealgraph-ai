@@ -1,0 +1,110 @@
+{
+  "eval_cases": [
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "{\"amount\": 50.0, \"description\": \"Standard meal expense\"}"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Expense of $50.0 auto-approved."
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "auto_approve_50",
+      "agent_data": {
+        "agents": {
+          "expense_workflow": {
+            "agent_id": "expense_workflow",
+            "agent_type": "Workflow",
+            "description": "",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "expense_workflow",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Expense of $50.0 auto-approved."
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "{\"amount\": 99.0, \"description\": \"Office supplies\"}"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Expense of $99.0 auto-approved."
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "auto_approve_99",
+      "agent_data": {
+        "agents": {
+          "expense_workflow": {
+            "agent_id": "expense_workflow",
+            "agent_type": "Workflow",
+            "description": "",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "expense_workflow",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Expense of $99.0 auto-approved."
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

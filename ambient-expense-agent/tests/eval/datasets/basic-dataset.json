@@ -1,0 +1,27 @@
+[
+  {
+    "id": "scenario-1-auto",
+    "prompt": "{\"amount\": 45.0, \"submitter\": \"alice@company.com\", \"category\": \"meals\", \"description\": \"Standard team lunch\", \"date\": \"2026-04-12\"}",
+    "expected_decision": "APPROVED (Auto)"
+  },
+  {
+    "id": "scenario-2-manual",
+    "prompt": "{\"amount\": 150.0, \"submitter\": \"bob@company.com\", \"category\": \"software\", \"description\": \"IDE License\", \"date\": \"2026-06-06\"}",
+    "expected_decision": "LLM Review or Human"
+  },
+  {
+    "id": "scenario-3-auto",
+    "prompt": "{\"amount\": 25.0, \"submitter\": \"charlie@company.com\", \"category\": \"supplies\", \"description\": \"Office pens\", \"date\": \"2026-01-10\"}",
+    "expected_decision": "APPROVED (Auto)"
+  },
+  {
+    "id": "scenario-4-manual",
+    "prompt": "{\"amount\": 1200.0, \"submitter\": \"david@company.com\", \"category\": \"travel\", \"description\": \"Flight to conference\", \"date\": \"2026-09-20\"}",
+    "expected_decision": "LLM Review or Human"
+  },
+  {
+    "id": "scenario-5-auto",
+    "prompt": "{\"amount\": 80.0, \"submitter\": \"eve@company.com\", \"category\": \"meals\", \"description\": \"Client dinner\", \"date\": \"2026-11-05\"}",
+    "expected_decision": "APPROVED (Auto)"
+  }
+]

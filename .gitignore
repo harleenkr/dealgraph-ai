@@ -1,0 +1,10 @@
+node_modules/
+__pycache__/
+*.pyc
+env/
+venv/
+.env
+dealgraph.db
+dist/
+.DS_Store
+dealgraph-ai-backend/data/

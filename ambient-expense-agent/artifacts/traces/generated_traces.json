@@ -1,0 +1,293 @@
+{
+  "bigquery_source": null,
+  "gcs_source": null,
+  "eval_cases": [
+    {
+      "prompt": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"amount\": 45.0, \"submitter\": \"alice@company.com\", \"category\": \"meals\", \"description\": \"Standard team lunch\", \"date\": \"2026-04-12\"}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": null
+        }
+      ],
+      "reference": null,
+      "system_instruction": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"events\": [{\"type\": \"Event\", \"output\": \"amount=45.0 submitter='alice@company.com' category='meals' description='Standard team lunch' date='2026-04-12'\"}, {\"type\": \"Event\", \"output\": \"amount=45.0 submitter='alice@company.com' category='meals' description='Standard team lunch' date='2026-04-12'\"}, {\"type\": \"Event\", \"output\": \"expense=ExpenseReport(amount=45.0, submitter='alice@company.com', category='meals', description='Standard team lunch', date='2026-04-12') decision='APPROVED (Auto)' risk_assessment=None\"}, {\"type\": \"Event\", \"output\": \"{'expense': {'amount': 45.0, 'submitter': 'alice@company.com', 'category': 'meals', 'description': 'Standard team lunch', 'date': '2026-04-12'}, 'decision': 'APPROVED (Auto)', 'risk_assessment': None}\"}]}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "system"
+      },
+      "conversation_history": null,
+      "rubric_groups": null,
+      "eval_case_id": "scenario-1-auto",
+      "intermediate_events": null,
+      "agent_info": null,
+      "agent_data": null,
+      "user_scenario": null
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"amount\": 150.0, \"submitter\": \"bob@company.com\", \"category\": \"software\", \"description\": \"IDE License\", \"date\": \"2026-06-06\"}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": null
+        }
+      ],
+      "reference": null,
+      "system_instruction": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"events\": [{\"type\": \"Event\", \"output\": \"amount=150.0 submitter='bob@company.com' category='software' description='IDE License' date='2026-06-06'\"}, {\"type\": \"Event\", \"output\": \"amount=150.0 submitter='bob@company.com' category='software' description='IDE License' date='2026-06-06'\"}, {\"type\": \"Event\", \"output\": \"amount=150.0 submitter='bob@company.com' category='software' description='IDE License' date='2026-06-06'\"}, {\"type\": \"Event\", \"output\": \"None\"}, {\"type\": \"Event\", \"output\": \"None\"}]}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "system"
+      },
+      "conversation_history": null,
+      "rubric_groups": null,
+      "eval_case_id": "scenario-2-manual",
+      "intermediate_events": null,
+      "agent_info": null,
+      "agent_data": null,
+      "user_scenario": null
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"amount\": 25.0, \"submitter\": \"charlie@company.com\", \"category\": \"supplies\", \"description\": \"Office pens\", \"date\": \"2026-01-10\"}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": null
+        }
+      ],
+      "reference": null,
+      "system_instruction": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"events\": [{\"type\": \"Event\", \"output\": \"amount=25.0 submitter='charlie@company.com' category='supplies' description='Office pens' date='2026-01-10'\"}, {\"type\": \"Event\", \"output\": \"amount=25.0 submitter='charlie@company.com' category='supplies' description='Office pens' date='2026-01-10'\"}, {\"type\": \"Event\", \"output\": \"expense=ExpenseReport(amount=25.0, submitter='charlie@company.com', category='supplies', description='Office pens', date='2026-01-10') decision='APPROVED (Auto)' risk_assessment=None\"}, {\"type\": \"Event\", \"output\": \"{'expense': {'amount': 25.0, 'submitter': 'charlie@company.com', 'category': 'supplies', 'description': 'Office pens', 'date': '2026-01-10'}, 'decision': 'APPROVED (Auto)', 'risk_assessment': None}\"}]}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "system"
+      },
+      "conversation_history": null,
+      "rubric_groups": null,
+      "eval_case_id": "scenario-3-auto",
+      "intermediate_events": null,
+      "agent_info": null,
+      "agent_data": null,
+      "user_scenario": null
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"amount\": 1200.0, \"submitter\": \"david@company.com\", \"category\": \"travel\", \"description\": \"Flight to conference\", \"date\": \"2026-09-20\"}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": null
+        }
+      ],
+      "reference": null,
+      "system_instruction": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"events\": [{\"type\": \"Event\", \"output\": \"amount=1200.0 submitter='david@company.com' category='travel' description='Flight to conference' date='2026-09-20'\"}, {\"type\": \"Event\", \"output\": \"amount=1200.0 submitter='david@company.com' category='travel' description='Flight to conference' date='2026-09-20'\"}, {\"type\": \"Event\", \"output\": \"amount=1200.0 submitter='david@company.com' category='travel' description='Flight to conference' date='2026-09-20'\"}, {\"type\": \"Event\", \"output\": \"None\"}, {\"type\": \"Event\", \"output\": \"None\"}]}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "system"
+      },
+      "conversation_history": null,
+      "rubric_groups": null,
+      "eval_case_id": "scenario-4-manual",
+      "intermediate_events": null,
+      "agent_info": null,
+      "agent_data": null,
+      "user_scenario": null
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"amount\": 80.0, \"submitter\": \"eve@company.com\", \"category\": \"meals\", \"description\": \"Client dinner\", \"date\": \"2026-11-05\"}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": null
+        }
+      ],
+      "reference": null,
+      "system_instruction": {
+        "parts": [
+          {
+            "media_resolution": null,
+            "code_execution_result": null,
+            "executable_code": null,
+            "file_data": null,
+            "function_call": null,
+            "function_response": null,
+            "inline_data": null,
+            "text": "{\"events\": [{\"type\": \"Event\", \"output\": \"amount=80.0 submitter='eve@company.com' category='meals' description='Client dinner' date='2026-11-05'\"}, {\"type\": \"Event\", \"output\": \"amount=80.0 submitter='eve@company.com' category='meals' description='Client dinner' date='2026-11-05'\"}, {\"type\": \"Event\", \"output\": \"expense=ExpenseReport(amount=80.0, submitter='eve@company.com', category='meals', description='Client dinner', date='2026-11-05') decision='APPROVED (Auto)' risk_assessment=None\"}, {\"type\": \"Event\", \"output\": \"{'expense': {'amount': 80.0, 'submitter': 'eve@company.com', 'category': 'meals', 'description': 'Client dinner', 'date': '2026-11-05'}, 'decision': 'APPROVED (Auto)', 'risk_assessment': None}\"}]}",
+            "thought": null,
+            "thought_signature": null,
+            "video_metadata": null,
+            "tool_call": null,
+            "tool_response": null,
+            "part_metadata": null
+          }
+        ],
+        "role": "system"
+      },
+      "conversation_history": null,
+      "rubric_groups": null,
+      "eval_case_id": "scenario-5-auto",
+      "intermediate_events": null,
+      "agent_info": null,
+      "agent_data": null,
+      "user_scenario": null
+    }
+  ],
+  "eval_dataset_df": null,
+  "candidate_name": null
+}

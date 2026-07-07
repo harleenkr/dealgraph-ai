@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard - Pending Approvals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0f14;
+            --card-bg: rgba(25, 28, 36, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f0f2f5;
+            --text-secondary: #a0a5b1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --approve-bg: rgba(34, 197, 94, 0.2);
+            --approve-color: #4ade80;
+            --reject-bg: rgba(239, 68, 68, 0.2);
+            --reject-color: #f87171;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Radial Glow Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 70vw;
+            height: 70vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a5b1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        header p {
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Glassmorphism Card */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .session-id {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-family: monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .expense-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .expense-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-approve {
+            background: var(--approve-bg);
+            color: var(--approve-color);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-approve:hover {
+            background: rgba(34, 197, 94, 0.3);
+            border-color: rgba(74, 222, 128, 0.5);
+        }
+
+        .btn-reject {
+            background: var(--reject-bg);
+            color: var(--reject-color);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+
+        .btn-reject:hover {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: rgba(248, 113, 113, 0.5);
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        .btn-loading .spinner {
+            display: block;
+        }
+        
+        .btn-loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Slide-out Modal / Toast */
+        .modal {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .modal.show {
+            bottom: 30px;
+        }
+
+        .modal-icon {
+            font-size: 1.5rem;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            border: 1px dashed var(--card-border);
+            border-radius: 16px;
+        }
+        
+        .loader-wrapper {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            padding: 4rem;
+        }
+        
+        .main-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Pending Approvals</h1>
+            <p>Review and act on high-value expense reports</p>
+        </header>
+
+        <div class="dashboard-grid" id="grid">
+            <div class="loader-wrapper" id="loader">
+                <div class="main-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationModal">
+        <div class="modal-icon" id="modalIcon">✅</div>
+        <div class="modal-text" id="modalText">Action processed successfully.</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchPending();
+        });
+
+        async function fetchPending() {
+            const grid = document.getElementById('grid');
+            try {
+                const res = await fetch('/api/pending');
+                const data = await res.json();
+                
+                if (data.error) {
+                    showModal('❌', 'Error loading pending items: ' + data.error);
+                    grid.innerHTML = `<div class="empty-state">Error loading data.</div>`;
+                    return;
+                }
+
+                const pending = data.pending || [];
+                
+                if (pending.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <h3 style="margin-bottom: 0.5rem; color: #fff;">You're all caught up!</h3>
+                            <p>No pending expense reports require your attention.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = '';
+                pending.forEach(item => {
+                    grid.appendChild(createCard(item));
+                });
+
+            } catch (err) {
+                console.error(err);
+                grid.innerHTML = `<div class="empty-state">Failed to connect to the server.</div>`;
+            }
+        }
+
+        function createCard(item) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${item.session_id}`;
+            
+            const amount = item.details.amount || 0;
+            const desc = item.details.description || 'No description provided';
+            
+            // Format short session id for display
+            const shortSession = item.session_id.substring(0, 8) + '...';
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="session-id" title="${item.session_id}">${shortSession}</span>
+                    <span class="interrupt-id" style="display:none">${item.interrupt_id}</span>
+                </div>
+                <div class="expense-amount">$${parseFloat(amount).toFixed(2)}</div>
+                <div class="expense-desc">${desc}</div>
+                <div class="actions">
+                    <button class="btn-approve" onclick="takeAction('${item.session_id}', '${item.interrupt_id}', true, this)">
+                        <span class="spinner"></span>
+                        <span class="btn-text">Approve</span>
+                    </button>
+                    <button class="btn-reject" onclick="takeAction('${item.session_id}', '${item.interrupt_id}', false, this)">
+                        <span class="spinner"></span>
+                        <span class="btn-text">Reject</span>
+                    </button>
+                </div>
+            `;
+            return card;
+        }
+
+        async function takeAction(sessionId, interruptId, approved, btnElement) {
+            // Add loading state
+            btnElement.classList.add('btn-loading');
+            const card = document.getElementById(`card-${sessionId}`);
+            const buttons = card.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+
+            try {
+                const res = await fetch(`/api/action/${sessionId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        interrupt_id: interruptId,
+                        approved: approved
+                    })
+                });
+                
+                const data = await res.json();
+                
+                if (data.error) {
+                    showModal('❌', 'Error: ' + data.error);
+                    buttons.forEach(btn => btn.disabled = false);
+                    btnElement.classList.remove('btn-loading');
+                } else {
+                    // Success
+                    showModal(approved ? '✅' : '🚫', `Expense ${approved ? 'approved' : 'rejected'} successfully.`);
+                    
+                    // Fade out card
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        card.remove();
+                        const grid = document.getElementById('grid');
+                        if (grid.children.length === 0) {
+                            grid.innerHTML = `
+                                <div class="empty-state">
+                                    <h3 style="margin-bottom: 0.5rem; color: #fff;">You're all caught up!</h3>
+                                    <p>No pending expense reports require your attention.</p>
+                                </div>
+                            `;
+                        }
+                    }, 300);
+                }
+            } catch (err) {
+                console.error(err);
+                showModal('❌', 'Network error occurred.');
+                buttons.forEach(btn => btn.disabled = false);
+                btnElement.classList.remove('btn-loading');
+            }
+        }
+
+        function showModal(icon, text) {
+            const modal = document.getElementById('notificationModal');
+            document.getElementById('modalIcon').innerText = icon;
+            document.getElementById('modalText').innerText = text;
+            
+            modal.classList.add('show');
+            setTimeout(() => {
+                modal.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

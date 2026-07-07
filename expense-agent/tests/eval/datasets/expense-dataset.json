@@ -1,0 +1,25 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "auto_approve_50",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "{\"amount\": 50.0, \"description\": \"Standard meal expense\"}"}]
+      }
+    },
+    {
+      "eval_case_id": "auto_approve_99",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "{\"amount\": 99.0, \"description\": \"Office supplies\"}"}]
+      }
+    },
+    {
+      "eval_case_id": "review_150",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "{\"amount\": 150.0, \"description\": \"Client dinner\"}"}]
+      }
+    }
+  ]
+}
