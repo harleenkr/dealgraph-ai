@@ -4,6 +4,18 @@ DealGraph AI is a next-generation, multi-agent enterprise platform designed to a
 
 <img width="1891" height="896" alt="image" src="https://github.com/user-attachments/assets/9e5e162c-af12-4513-821f-871de756a5f9" />
 
+## 💡 How to Use DealGraph AI (End-to-End Workflow)
+
+If you are a Sales Rep, Deal Desk Analyst, or Legal Counsel, this is your typical workflow from start to finish:
+
+1.  **Submit the Deal:** Navigate to the **Data Intake Form**. Enter the customer's name, their industry, the total deal value, and the requested discount percentage.
+2.  **Upload the MSA:** Attach the raw Master Services Agreement (PDF format) to the form and click **Run Multi-Agent Analysis**.
+3.  **Watch the AI Work:** Sit back as the **Agent Timeline** lights up. You will see the Deal Desk, Legal, Compliance, and Trust & Safety agents analyzing the document in parallel in real-time.
+4.  **Review the Findings:** Once complete, review the **Executive Decision Brief** for a C-level summary of the deal. Check the unified **Risk Score** to instantly see if the deal is safe to close.
+5.  **Explore the Graph:** If a risk is flagged, use the interactive **Dynamic Knowledge Graph** to trace exactly how the requested discount or a specific liability clause triggered the warning.
+6.  **Human-in-the-Loop Sign Off:** As an authorized reviewer, navigate to the Human Evaluation Panel. You can either **Approve AI Analysis** (finalizing the deal) or manually **Override Analysis** if you have off-system context, logging your justification for compliance.
+7.  **Take Action:** Download the automatically generated **Redlined .docx file** to send back to the customer, or click **Export (PDF)** to generate a pristine, timestamped audit report of the entire AI analysis.
+
 ## Step-by-Step Product Walkthrough
 
 DealGraph AI is composed of several powerful modules that work together seamlessly. Here is a detailed breakdown of every component.
