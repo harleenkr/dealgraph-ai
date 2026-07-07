@@ -9,9 +9,8 @@ RUN npm install --legacy-peer-deps
 
 # Copy source code and build
 COPY . .
-# Setting VITE_API_URL dynamically during build or providing a default.
-ARG VITE_API_URL
-ENV VITE_API_URL=$VITE_API_URL
+# Hardcoding VITE_API_URL directly in the Docker build step for Vite static compilation
+ENV VITE_API_URL="https://dealgraph-backend-266277963066.us-central1.run.app"
 RUN npm run build
 
 # Stage 2: Serve with Nginx
