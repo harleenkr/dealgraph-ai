@@ -1,5 +1,11 @@
 # DealGraph AI
 
+![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+![BigQuery](https://img.shields.io/badge/BigQuery-%23669DF6.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-%238E75B2.svg?style=for-the-badge&logo=google-gemini&logoColor=white)
+![MCP Server](https://img.shields.io/badge/MCP_Servers-cloudrun_|_knowledge-%23000000.svg?style=for-the-badge)
+
 DealGraph AI is a next-generation, multi-agent enterprise platform designed to automate and augment the analysis of complex software deals, Master Services Agreements (MSAs), and commercial contracts. By leveraging parallel AI agents, the platform dramatically accelerates the deal review process, identifies hidden risks, and empowers Sales, Legal, and Deal Desk teams to close compliant deals faster.
 
 <img width="1891" height="896" alt="image" src="https://github.com/user-attachments/assets/9e5e162c-af12-4513-821f-871de756a5f9" />
