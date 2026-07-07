@@ -39,14 +39,19 @@ AI trust is paramount in enterprise deal-making. This panel displays the rigorou
 
 <img width="801" height="270" alt="image" src="https://github.com/user-attachments/assets/0cb1ef08-baf0-4c1f-b98a-afbbda5f111a" />
 
-### 4. Dynamic Knowledge Graph
+### 4. Human-in-the-Loop (HITL) Sign Off
+While DealGraph AI automates the heavy lifting, human oversight remains critical for high-stakes decisions. The Human Evaluation Panel allows authorized personnel (e.g., VP of Sales, Legal Counsel) to review the AI's recommendation and make a final binding decision.
+*   **Approve AI Analysis:** Clicking this button confirms agreement with the AI's findings. The system logs the user's approval, finalizes the deal status as "Approved," and updates the historical database, allowing the deal to proceed to the next stage.
+*   **Override Analysis:** If the reviewer disagrees with the AI (e.g., they have off-system context that mitigates a flagged risk), they can click this button to manually override a "Rejected" or "High Risk" status. The system requires an override justification, records the user's IAM role, and logs the manual intervention for compliance and audit trails.
+
+### 5. Dynamic Knowledge Graph
 A defining feature of DealGraph AI. Instead of reading a 50-page MSA, users can visually explore the deal structure.
 *   **How it is created:** The backend AI extracts entities (Customer, Deal, Clauses, Risks) and relationships ("AGREES_TO", "CONTAINS_RISK") from the MSA text and deal metadata.
 *   **Visualization:** The frontend renders this using `React Flow`, creating an interactive, drag-and-drop network graph where users can visually trace how a high discount relates to a specific liability clause.
 
 <img width="1622" height="477" alt="image" src="https://github.com/user-attachments/assets/371c596d-de54-492d-a846-eadeab520efc" />
 
-### 5. AI Risk Score & Slack Warnings
+### 6. AI Risk Score & Slack Warnings
 The platform computes a unified **Risk Score** (0-100) based on the combined findings of all agents.
 *   **Visual Indicators:** The score dictates the UI styling (Green for low risk, Red for high risk).
 *   **Slack Integration:** If the risk score exceeds the critical threshold (e.g., > 75), the platform automatically simulates pushing a high-priority webhook alert to a designated Slack channel (e.g., `#deal-approvals`), complete with the deal context and risk factors.
@@ -55,7 +60,7 @@ The platform computes a unified **Risk Score** (0-100) based on the combined fin
 
 <img width="1601" height="45" alt="image" src="https://github.com/user-attachments/assets/153792a5-dbfc-435c-8d0e-5ee4ad9fbfb7" />
 
-### 6. Executive Decision Brief & PDF Export
+### 7. Executive Decision Brief & PDF Export
 The system synthesizes all agent findings into a concise, readable Executive Decision Brief designed for C-level review.
 *   **Content:** Deal Summary, Key Risks identified by Legal, Pricing analysis from Deal Desk, and a final Go/No-Go Recommendation.
 *   **Export Functionality:** Users can click **"Export (PDF)"** to generate a clean, branded PDF report entirely client-side using `jsPDF` and `html-to-image`. The PDF includes the deal metadata, the text of the Executive Brief, and a visual snapshot of the Knowledge Graph on the second page. 
@@ -63,7 +68,7 @@ The system synthesizes all agent findings into a concise, readable Executive Dec
 
 <img width="1115" height="82" alt="image" src="https://github.com/user-attachments/assets/708623dc-e001-4f24-9abe-4160f2a74743" />
 
-### 7. Automated Actions (Redlines & Email)
+### 8. Automated Actions (Redlines & Email)
 To accelerate the deal cycle, DealGraph AI acts on its findings:
 *   **Generate Redline:** The Legal agent generates a proposed Microsoft Word document (`.docx`) containing exact redlined textual revisions to mitigate the risks it found in the uploaded MSA.
 *   **Draft Email:** Automatically drafts a contextual email to the prospect or internal VP, summarizing the sticking points and proposing the generated redlines.
@@ -74,7 +79,7 @@ To accelerate the deal cycle, DealGraph AI acts on its findings:
 
 <img width="1872" height="892" alt="image" src="https://github.com/user-attachments/assets/a019ed96-3381-4895-bf76-a482f40b53d5" />
 
-### 8. Historical Analytics Dashboard
+### 9. Historical Analytics Dashboard
 A dedicated tab for Deal Desk managers to track performance over time, powered by `Recharts`.
 *   **Databases:** Backed by a local `SQLite` database (`dealgraph.db`) that stores historical deal metadata, agent recommendations, and final outcomes (Win/Loss).
 *   **Charts:**
