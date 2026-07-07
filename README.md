@@ -16,7 +16,17 @@ If you are a Sales Rep, Deal Desk Analyst, or Legal Counsel, this is your typica
 6.  **Human-in-the-Loop Sign Off:** As an authorized reviewer, navigate to the Human Evaluation Panel. You can either **Approve AI Analysis** (finalizing the deal) or manually **Override Analysis** if you have off-system context, logging your justification for compliance.
 7.  **Take Action:** Download the automatically generated **Redlined .docx file** to send back to the customer, or click **Export (PDF)** to generate a pristine, timestamped audit report of the entire AI analysis.
 
+<img width="1877" height="907" alt="image" src="https://github.com/user-attachments/assets/23f69482-5ea4-485c-92f3-e724f5e7d129" />
+
 <img width="1872" height="892" alt="image" src="https://github.com/user-attachments/assets/a019ed96-3381-4895-bf76-a482f40b53d5" />
+
+<img width="1890" height="901" alt="image" src="https://github.com/user-attachments/assets/f6ffa444-1c1c-4f31-b5d0-2d7a588a44d8" />
+
+<img width="1576" height="852" alt="image" src="https://github.com/user-attachments/assets/c024e8a9-2009-41da-a3ec-4b150b74c1f2" />
+
+<img width="1542" height="665" alt="image" src="https://github.com/user-attachments/assets/f190eeda-1125-4762-aa31-d67a6d652498" />
+
+<img width="1567" height="130" alt="image" src="https://github.com/user-attachments/assets/e4b9600f-70a4-4b00-8a2c-fa93c5904743" />
 
 ## Step-by-Step Product Walkthrough
 
