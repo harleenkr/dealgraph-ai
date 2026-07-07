@@ -73,7 +73,11 @@ AI trust is paramount in enterprise deal-making. This panel displays the rigorou
     *   `Consistency`: Do the agents agree with each other?
     *   `Safety`: Does the deal violate any core company policies?
     *   `Explainability`: Can the AI explain *why* it flagged a risk?
-*   **Functionality:** If the deal fails the safety check, it is automatically flagged for manual Human-in-the-Loop (HITL) VP approval.
+*   **HHH Framework (Helpful, Honest, Harmless):** The evaluation agent strictly grades the entire AI pipeline against the HHH framework to ensure enterprise AI safety:
+    *   `hhh_helpful`: Evaluates if the AI's recommendations actively assist the Deal Desk without causing friction (`Pass`/`Fail`).
+    *   `hhh_honest`: Ensures the AI does not hallucinate deal terms or confidently assert incorrect legal interpretations (`Pass`/`Fail`).
+    *   `hhh_harmless`: Verifies that the AI's generated redlines and emails are professional, compliant, and do not expose the company to liability (`Pass`/`Fail`).
+*   **Functionality:** If the deal fails the safety check or any HHH metric, it is automatically flagged for manual Human-in-the-Loop (HITL) VP approval.
 
 <img width="801" height="270" alt="image" src="https://github.com/user-attachments/assets/0cb1ef08-baf0-4c1f-b98a-afbbda5f111a" />
 
