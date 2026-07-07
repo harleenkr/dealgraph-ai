@@ -50,10 +50,13 @@ The entry point of the platform. Sales representatives or Deal Desk analysts use
 Once the deal is submitted, the platform spawns a team of autonomous AI agents powered by Gemini 2.5 Flash. The **Agent Timeline** provides real-time, pulsing visual feedback as each agent executes its task.
 *   **Execution Order:** The agents run concurrently for maximum speed, orchestrated by the backend main controller.
 *   **The Agents:**
-    1.  **Deal Desk Agent:** Analyzes the deal value and requested discount against historical pricing policies.
-    2.  **Legal Agent:** Scans the uploaded MSA for indemnification clauses, liability caps, and non-standard terms.
-    3.  **Compliance Agent:** Verifies regulatory compliance (SOC2, GDPR, HIPAA) and ASC-606 revenue recognition requirements.
-    4.  **Trust & Safety Agent:** Oversees the entire operation, grading the analysis for AI safety and groundedness.
+    1.  **IntakeAgent:** Connects via MCP Server to verify historical CRM/Salesforce data. Completes core intake and saves the initial deal metadata to the database.
+    2.  **RevenueRiskAgent:** Analyzes the deal value and requested discount, identifying critical risk drivers based on historical pricing policies.
+    3.  **PolicyAgent:** Scans the uploaded MSA against internal playbooks, determining if a complex approval chain or extended review is required for non-standard terms.
+    4.  **KnowledgeGraphAgent:** Triggers the entity extraction and relationship mapping process to visually graph the deal's complexities.
+    5.  **ExecutiveBriefAgent:** Synthesizes the findings from the previous agents into a concise, C-level decision brief.
+    6.  **SecurityAgent:** Performs a final security and compliance check (e.g., SOC2, GDPR, HIPAA) before final evaluation.
+    7.  **EvaluationAgent:** Grades the entire pipeline's analysis for AI safety and groundedness, producing the final unified Risk/Evaluation Score (e.g., Score: 100.0).
 
 <img width="221" height="642" alt="image" src="https://github.com/user-attachments/assets/8742d77e-ae36-4931-bc51-a173db7a326f" />
 
@@ -163,13 +166,15 @@ graph TD
         UI["💻 React / Vite Frontend<br>(Client-Side App)"]:::frontend
         API["⚙️ FastAPI Backend<br>(Python Orchestrator)"]:::backend
         
-        subgraph "Gemini 2.5 Flash Multi-Agent System"
+        subgraph "Gemini 2.5 Flash Multi-Agent Pipeline"
             Orchestrator{"Multi-Agent<br>Controller"}:::backend
-            A1["📊 Deal Desk Agent"]:::agent
-            A2["⚖️ Legal Agent"]:::agent
-            A3["🛡️ Compliance Agent"]:::agent
-            A4["✅ Trust & Safety Agent"]:::agent
-            KG["🕸️ Knowledge Graph<br>Generator"]:::agent
+            A1["📥 IntakeAgent"]:::agent
+            A2["💰 RevenueRiskAgent"]:::agent
+            A3["⚖️ PolicyAgent"]:::agent
+            A4["🕸️ KnowledgeGraphAgent"]:::agent
+            A5["📝 ExecutiveBriefAgent"]:::agent
+            A6["🛡️ SecurityAgent"]:::agent
+            A7["✅ EvaluationAgent"]:::agent
         end
         
         DB[("🗄️ SQLite / BigQuery<br>(Analytics & Deals)")]:::database
@@ -185,16 +190,16 @@ graph TD
     UI -- "REST / JSON" --> API
     API -- "Triggers Analysis" --> Orchestrator
     
-    Orchestrator -- "Parallel Exec" --> A1
-    Orchestrator -- "Parallel Exec" --> A2
-    Orchestrator -- "Parallel Exec" --> A3
-    Orchestrator -- "Supervises" --> A4
+    Orchestrator -- "1. Intake" --> A1
+    Orchestrator -- "2. Risk Analysis" --> A2
+    Orchestrator -- "3. Policy Scan" --> A3
+    Orchestrator -- "4. Graph Gen" --> A4
+    Orchestrator -- "5. Synthesize" --> A5
+    Orchestrator -- "6. Security Check" --> A6
+    Orchestrator -- "7. Final Score" --> A7
     
-    A1 & A2 & A3 --> A4
-    A4 -- "Final Risk Score" --> Orchestrator
-    
-    Orchestrator -- "Triggers Generation" --> KG
-    KG -- "JSON Edges/Nodes" --> Orchestrator
+    A1 & A2 & A3 & A4 & A5 & A6 --> A7
+    A7 -- "Final Output & Score" --> Orchestrator
     
     Orchestrator -- "Reads/Writes" --> DB
     API -- "Returns Results" --> UI
