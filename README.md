@@ -77,9 +77,17 @@ While DealGraph AI automates the heavy lifting, human oversight remains critical
 <img width="1531" height="321" alt="image" src="https://github.com/user-attachments/assets/7d6f7c8b-f9df-4188-9f40-7c3f70f87ab9" />
 
 ### 5. Dynamic Knowledge Graph
-A defining feature of DealGraph AI. Instead of reading a 50-page MSA, users can visually explore the deal structure.
-*   **How it is created:** The backend AI extracts entities (Customer, Deal, Clauses, Risks) and relationships ("AGREES_TO", "CONTAINS_RISK") from the MSA text and deal metadata.
-*   **Visualization:** The frontend renders this using `React Flow`, creating an interactive, drag-and-drop network graph where users can visually trace how a high discount relates to a specific liability clause.
+A defining feature of DealGraph AI is its ability to convert dense, 50-page legal documents into a visual **Knowledge Graph**. 
+
+**What is a Knowledge Graph?**
+Unlike traditional keyword search or standard relational databases, a Knowledge Graph represents information as a network of nodes (entities) and edges (relationships). This allows the system to understand the *context* and *connections* between abstract concepts—such as how a specific "Discount Percentage" directly impacts a "Liability Cap" clause.
+
+**How it is Created & Execution Order:**
+The Knowledge Graph generation executes at the very end of the AI pipeline, *after* all individual agents have completed their analysis, acting as a final synthesis step.
+1.  **Entity Extraction:** The orchestrator feeds the raw MSA text, deal metadata, and the combined agent findings back into Gemini 2.5 Flash. The model is prompted to extract key entities (e.g., `Customer`, `Contract Term`, `Identified Risk`).
+2.  **Relationship Mapping:** The model then maps the edges connecting these entities (e.g., `AGREES_TO`, `CONTAINS_RISK`, `MITIGATES`).
+3.  **JSON Structuring:** The unstructured text is converted into a deterministic, standardized JSON payload representing nodes and edges.
+4.  **Client-Side Rendering:** The FastAPI backend sends this JSON to the React frontend, where `React Flow` renders it into a physics-based, interactive network graph. Users can physically drag nodes around to explore the interconnected risks of the deal.
 
 <img width="1622" height="477" alt="image" src="https://github.com/user-attachments/assets/371c596d-de54-492d-a846-eadeab520efc" />
 
