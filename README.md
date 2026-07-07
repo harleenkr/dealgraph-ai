@@ -208,6 +208,16 @@ graph TD
     A4 -. "Monitors Infra" .-> MCP1
 ```
 
+**How the System Works:**
+The architecture illustrates a clear, sequential flow of data from the End User through the AI pipeline and into persistent storage:
+1.  **User Input:** The End User (Sales/Legal) uploads the MSA and deal metadata via the React/Vite client-side application.
+2.  **API Routing:** The frontend securely transmits this data via REST to the FastAPI Backend, which acts as the central Python Orchestrator.
+3.  **Agent Orchestration:** The Orchestrator triggers the Gemini 2.5 Flash Multi-Agent Pipeline. The execution happens strictly in the sequence defined by the workflow timeline:
+    *   **Intake** (`IntakeAgent`) ➔ **Risk Analysis** (`RevenueRiskAgent`) ➔ **Policy Scan** (`PolicyAgent`) ➔ **Graph Generation** (`KnowledgeGraphAgent`) ➔ **Synthesis** (`ExecutiveBriefAgent`) ➔ **Security Check** (`SecurityAgent`).
+4.  **Final Evaluation:** All outputs from the first six agents are routed into the `EvaluationAgent`, which acts as the ultimate supervisor to compute the final unified Risk Score and safety assessment.
+5.  **External Context:** During this pipeline execution, agents dynamically query external MCP Servers to break out of their static training data—fetching live regulatory docs or monitoring infrastructure health.
+6.  **Persistence & Display:** Finally, the Orchestrator writes the comprehensive deal results to the database (SQLite for local / BigQuery for analytics) and returns the final structured payload to the UI for rendering.
+
 ### Backend (Python / FastAPI)
 *   **Framework:** FastAPI for high-performance asynchronous API endpoints.
 *   **AI Engine:** Integrates with Gemini 2.5 Flash for agentic reasoning, entity extraction (for the Knowledge Graph), and natural language generation.
