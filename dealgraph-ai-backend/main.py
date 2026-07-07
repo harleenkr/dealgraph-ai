@@ -254,7 +254,7 @@ async def parse_msa(file: UploadFile = File(...)):
         contents = await file.read()
         
         # Save the uploaded file
-        uploads_dir = os.path.join("data", "uploads")
+        uploads_dir = "/tmp/uploads"
         os.makedirs(uploads_dir, exist_ok=True)
         filename = f"{uuid.uuid4()}_{file.filename}"
         filepath = os.path.join(uploads_dir, filename)

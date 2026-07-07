@@ -7,7 +7,7 @@ import uuid
 
 # In production, this would be a Cloud SQL Postgres connection string
 # We fallback to sqlite for the local hackathon demo
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./dealgraph.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:////tmp/dealgraph.db")
 
 engine = create_engine(
     DATABASE_URL, 
