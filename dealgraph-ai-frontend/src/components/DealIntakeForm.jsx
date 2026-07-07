@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Send, Loader2, UploadCloud, RefreshCw } from 'lucide-react';
 
 export default function DealIntakeForm({ onSubmit, isLoading }) {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
   const [formData, setFormData] = useState({
     customer_name: '',
     industry: '',
@@ -44,7 +46,7 @@ export default function DealIntakeForm({ onSubmit, isLoading }) {
     formData.append('file', file);
 
     try {
-        const response = await fetch('http://localhost:8080/parse-msa', {
+        const response = await fetch(`${API_BASE_URL}/parse-msa`, {
             method: 'POST',
             body: formData,
         });
@@ -73,7 +75,7 @@ export default function DealIntakeForm({ onSubmit, isLoading }) {
   const handleCRMSync = async () => {
     setIsSyncingCRM(true);
     try {
-        const response = await fetch('http://localhost:8080/sync-salesforce');
+        const response = await fetch(`${API_BASE_URL}/sync-salesforce`);
         if (!response.ok) throw new Error("Failed to sync with Salesforce");
         const data = await response.json();
         if (data.status === 'success') {
