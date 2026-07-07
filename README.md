@@ -8,12 +8,12 @@
 
 DealGraph AI is a next-generation, multi-agent enterprise platform designed to automate and augment the analysis of complex software deals, Master Services Agreements (MSAs), and commercial contracts. By leveraging parallel AI agents, the platform dramatically accelerates the deal review process, identifies hidden risks, and empowers Sales, Legal, and Deal Desk teams to close compliant deals faster.
 
-## 🚀 Live Application Links
+## Live Application Links
 
 **To experience DealGraph AI, you only need to visit the Frontend URL. The frontend securely routes API calls to the live backend server.**
 
-*   🌐 **Live Frontend Application (Main Entry Point):** [https://dealgraph-frontend-266277963066.us-central1.run.app/](https://dealgraph-frontend-266277963066.us-central1.run.app/)
-*   ⚙️ **Live Backend API (For reference only):** [https://dealgraph-backend-266277963066.us-central1.run.app](https://dealgraph-backend-266277963066.us-central1.run.app)
+* *Live Frontend Application (Main Entry Point):* [https://dealgraph-frontend-266277963066.us-central1.run.app/](https://dealgraph-frontend-266277963066.us-central1.run.app/)
+* *Live Backend API (For reference only):* [https://dealgraph-backend-266277963066.us-central1.run.app](https://dealgraph-backend-266277963066.us-central1.run.app)
 
 ## The Problem DealGraph AI Solves
 Enterprise software deals often stall during the "Legal & Deal Desk" review phase. When a sales rep submits a custom Master Services Agreement (MSA) with non-standard pricing, discounts, and complex liability clauses, it requires manual review from multiple siloed departments (Legal, Finance, Compliance, Security). This manual, sequential process causes bottlenecks, delays revenue recognition, and introduces human error when cross-referencing dense 50-page legal documents against internal pricing playbooks. DealGraph AI eliminates this friction, automating what used to take days into a process that takes seconds.
