@@ -42,7 +42,7 @@ The application is built using a modern, decoupled architecture designed for sca
 
 This repository is fully containerized and configured for Continuous Deployment via **Google Cloud Run**.
 
-### Proposed Architecture Changes
+### Suggested Architecture Changes
 
 We prepared the codebase for production by containerizing both applications:
 
