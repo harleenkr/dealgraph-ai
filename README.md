@@ -252,12 +252,23 @@ The repository is fully containerized and configured for Continuous Deployment v
 *   **Backend (FastAPI/Python):** Packaged via `dealgraph-ai-backend/Dockerfile` using Python 3.11 and Uvicorn.
 *   **Frontend (Vite/React):** Packaged via `dealgraph-ai-frontend/Dockerfile` using a multi-stage Nginx build to serve static files.
 
-**How to Deploy via Google Cloud Console:**
-1. Navigate to **Google Cloud Console -> Cloud Run**.
-2. Click **Create Service** and select **Continuously deploy from a repository**.
-3. Link your GitHub account and select this repository.
-4. Set the build source directory to `dealgraph-ai-backend` for the API service.
-5. Create a second service pointing the source to `dealgraph-ai-frontend`. **Note:** You must set the `VITE_API_URL` environment variable on the frontend service to point to the backend's live URL.
+**How to Deploy via Google Cloud CLI:**
+
+1. **Deploy the Backend:**
+   Navigate into the backend directory and run the deployment command. Cloud Run will automatically build the container and deploy the FastAPI service.
+   ```bash
+   cd dealgraph-ai-backend
+   gcloud run deploy dealgraph-backend --source . --region us-central1 --allow-unauthenticated --port 8080
+   ```
+   *Note the generated Service URL from the terminal output.*
+
+2. **Deploy the Frontend:**
+   Navigate into the frontend directory. Ensure your `Dockerfile` or `.env.production` is updated to point to the backend URL you just generated, then run:
+   ```bash
+   cd ../dealgraph-ai-frontend
+   gcloud run deploy dealgraph-frontend --source . --region us-central1 --allow-unauthenticated
+   ```
+   *Click the newly generated Frontend Service URL to view your live, serverless Multi-Agent platform!*
 
 ### 2. Google Cloud Agent Platform & Playground Testing
 DealGraph AI's core logic utilizes Gemini 2.5 Flash. If you want to experiment with the individual agent prompts (e.g., the Legal Agent or Trust & Safety Agent) before committing code:
