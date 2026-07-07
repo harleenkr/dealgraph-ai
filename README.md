@@ -133,6 +133,8 @@ The system synthesizes all agent findings into a concise, readable Executive Dec
 *   **Export Functionality:** Users can click **"Export (PDF)"** to generate a clean, branded PDF report entirely client-side using `jsPDF` and `html-to-image`. The PDF includes the deal metadata, the text of the Executive Brief, and a visual snapshot of the Knowledge Graph on the second page. 
 *   **View Full Report:** Opens the generated PDF in a new browser tab for quick reading without downloading.
 
+<img width="1532" height="341" alt="image" src="https://github.com/user-attachments/assets/7a38e44e-0e00-4206-8c45-314c00ac471e" />
+
 <img width="1115" height="82" alt="image" src="https://github.com/user-attachments/assets/708623dc-e001-4f24-9abe-4160f2a74743" />
 
 ### 8. Automated Actions (Redlines & Email)
