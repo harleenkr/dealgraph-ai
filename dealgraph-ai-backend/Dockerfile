@@ -13,5 +13,5 @@ COPY . .
 # The default port is 8080.
 ENV PORT=8080
 
-# Command to run the application using Uvicorn
-CMD uvicorn main:app --host 0.0.0.0 --port $PORT
+# Command to run the application
+CMD ["python", "main.py"]
