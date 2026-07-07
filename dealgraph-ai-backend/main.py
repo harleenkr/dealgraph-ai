@@ -63,6 +63,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from fastapi.responses import RedirectResponse
+
+@app.get("/")
+def read_root():
+    """Redirects to the Swagger API documentation."""
+    return RedirectResponse(url="/docs")
+
 def get_db():
     db = SessionLocal()
     try:
