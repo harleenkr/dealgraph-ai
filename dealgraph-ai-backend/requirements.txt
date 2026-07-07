@@ -7,3 +7,6 @@ networkx
 mcp
 SQLAlchemy
 google-cloud-bigquery
+python-docx
+PyPDF2
+python-multipart
