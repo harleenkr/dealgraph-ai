@@ -130,33 +130,37 @@ The application is built using a modern, decoupled architecture designed for sca
 
 ---
 
-## Cloud Run & Continuous Deployment Plan
+## ☁️ Google Cloud Deployment & Agent Ecosystem
 
-This repository is fully containerized and configured for Continuous Deployment via **Google Cloud Run**.
+DealGraph AI is designed as a cloud-native application, deeply integrated with the Google Cloud ecosystem, Model Context Protocol (MCP), and BigQuery.
 
-### Suggested Architecture Changes
+### 1. Cloud Run Deployment (Frontend & Backend)
+The repository is fully containerized and configured for Continuous Deployment via **Google Cloud Run**.
+*   **Backend (FastAPI/Python):** Packaged via `dealgraph-ai-backend/Dockerfile` using Python 3.11 and Uvicorn.
+*   **Frontend (Vite/React):** Packaged via `dealgraph-ai-frontend/Dockerfile` using a multi-stage Nginx build to serve static files.
 
-We prepared the codebase for production by containerizing both applications:
-
-**1. Backend (FastAPI/Python)**
-- `dealgraph-ai-backend/Dockerfile`: A production-ready Dockerfile using the official Python 3.11 image to serve the API via Uvicorn.
-- `dealgraph-ai-backend/.dockerignore`: Excludes local SQLite databases, pycache, and virtual environments from the image.
-
-**2. Frontend (Vite/React)**
-- `dealgraph-ai-frontend/Dockerfile`: A multi-stage Dockerfile that first builds the Vite React app, and then serves the static files using a lightweight Nginx web server.
-- `dealgraph-ai-frontend/nginx.conf`: Custom Nginx configuration to handle React's client-side routing.
-- `dealgraph-ai-frontend/.dockerignore`: Excludes `node_modules` and local environment files.
-
-### Step-by-Step Deployment Verification
-
-By linking this GitHub repository directly to Google Cloud Run, any pushes to the `main` branch will automatically trigger a new build and deployment for both services.
-
-To deploy this project yourself:
-1. Navigate to the **Google Cloud Console -> Cloud Run**.
+**How to Deploy via Google Cloud Console:**
+1. Navigate to **Google Cloud Console -> Cloud Run**.
 2. Click **Create Service** and select **Continuously deploy from a repository**.
 3. Link your GitHub account and select this repository.
 4. Set the build source directory to `dealgraph-ai-backend` for the API service.
 5. Create a second service pointing the source to `dealgraph-ai-frontend`. **Note:** You must set the `VITE_API_URL` environment variable on the frontend service to point to the backend's live URL.
+
+### 2. Google Cloud Agent Platform & Playground Testing
+DealGraph AI's core logic utilizes Gemini 2.5 Flash. If you want to experiment with the individual agent prompts (e.g., the Legal Agent or Trust & Safety Agent) before committing code:
+*   Navigate to the **Google Cloud Console -> Agent Builder -> Playground**.
+*   You can paste the specific system prompts found in `tools/` into the Agent Playground.
+*   Upload a sample PDF document directly into the playground interface to manually test how the agent extracts risk factors or validates revenue recognition rules without needing to run the full application.
+
+### 3. BigQuery Usage
+While local development uses SQLite (`dealgraph.db`), production deployments integrate seamlessly with **Google BigQuery** to handle massive enterprise data scales.
+*   **Analytics:** All historical deal metadata, agent logs, and Risk Scores are synced to a BigQuery dataset.
+*   **Data Warehouse:** The historical analytics dashboard (Win/Loss ratios, Deal Volumes) can be configured to query BigQuery directly using the `google-cloud-bigquery` Python client, allowing Deal Desk teams to run complex SQL aggregations over years of historical deal data across the entire organization.
+
+### 4. Model Context Protocol (MCP) Integration
+DealGraph AI leverages **MCP Servers** to securely expand the capabilities of its AI agents without hardcoding brittle integrations.
+*   **Cloud Run MCP:** The system uses the `cloudrun` MCP server to dynamically monitor the health of its own deployed services, allowing the agents to self-report infrastructure issues.
+*   **Knowledge Retrieval MCP:** By integrating with the `google-developer-knowledge` MCP server, the Legal and Compliance agents can execute real-time searches against the latest Google Cloud documentation and regulatory compliance guidelines, ensuring their analyses are grounded in the most up-to-date legal frameworks.
 
 ## Local Development
 
