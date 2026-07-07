@@ -159,7 +159,9 @@ A dedicated tab for Deal Desk managers to track performance over time, powered b
     *   **Win/Loss Ratio:** Pie charts showing the success rate of AI-approved deals vs. rejected deals.
     *   **Revenue Protection:** Line graphs tracking how much revenue was "protected" by catching bad clauses before signing.
 
-<img width="1902" height="757" alt="image" src="https://github.com/user-attachments/assets/75b9c499-da9f-442e-844e-4111c54ac45e" />
+<img width="1822" height="917" alt="image" src="https://github.com/user-attachments/assets/a060f818-46e5-4f8d-8e0e-ce3729aef96f" />
+<img width="1791" height="587" alt="image" src="https://github.com/user-attachments/assets/f5211948-91da-4b1e-9314-6293755665b4" />
+
 
 ---
 
