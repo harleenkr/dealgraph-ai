@@ -13,7 +13,6 @@ DealGraph AI is a next-generation, multi-agent enterprise platform designed to a
 **To experience DealGraph AI, you only need to visit the Frontend URL. The frontend securely routes API calls to the live backend server.**
 
 * *Live Frontend Application (Main Entry Point):* [https://dealgraph-frontend-266277963066.us-central1.run.app/](https://dealgraph-frontend-266277963066.us-central1.run.app/)
-* *Live Backend API (For reference only):* [https://dealgraph-backend-266277963066.us-central1.run.app](https://dealgraph-backend-266277963066.us-central1.run.app)
 
 ## The Problem
 Enterprise software deals often stall during the "Legal & Deal Desk" review phase. When a sales rep submits a custom Master Services Agreement (MSA) with non-standard pricing, discounts, and complex liability clauses, it requires manual review from multiple siloed departments (Legal, Finance, Compliance, Security). This manual, sequential process causes bottlenecks, delays revenue recognition, and introduces human error when cross-referencing dense 50-page legal documents against internal pricing playbooks.
@@ -275,7 +274,7 @@ The repository is fully containerized and configured for Continuous Deployment v
    cd dealgraph-ai-backend
    gcloud run deploy dealgraph-backend --source . --region us-central1 --allow-unauthenticated --port 8080
    ```
-   *Note the generated Service URL from the terminal output.*
+   *Note the generated Service URL from the terminal output.* *Backend API (For reference only):* [https://dealgraph-backend-266277963066.us-central1.run.app](https://dealgraph-backend-266277963066.us-central1.run.app)
 
 2. **Deploy the Frontend:**
    Navigate into the frontend directory. Because Vite is a static site generator, environment variables provided via the `gcloud` CLI (`--set-env-vars`) are injected at *runtime*, which is too late for Vite's static JavaScript bundle.
