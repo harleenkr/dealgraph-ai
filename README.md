@@ -38,15 +38,33 @@ The application is built using a modern, decoupled architecture designed for sca
     *   `lucide-react`: For clean, modern iconography.
 *   **PDF Generation:** Utilizes `jspdf` and `html-to-image` for client-side report generation.
 
-## 🚀 Deployment
+## 🚀 Cloud Run & Continuous Deployment Plan
 
-The repository is fully prepared for continuous deployment via **Google Cloud Run**.
+This repository is fully containerized and configured for Continuous Deployment via **Google Cloud Run**.
 
-1.  **Dockerized:** Both the frontend and backend contain optimized `Dockerfile`s.
-    *   The frontend uses a multi-stage build, compiling the React app and serving it via a lightweight Nginx container (`nginx.conf` included).
-    *   The backend is packaged using a slim Python 3.11 image and served via Uvicorn.
-2.  **Environment Configuration:** The frontend dynamically targets the backend URL using the `VITE_API_URL` environment variable defined in the cloud configuration.
-3.  **Continuous Integration:** By linking this GitHub repository directly to Google Cloud Run, any pushes to the `main` branch will automatically trigger a new build and deployment for both services.
+### Proposed Architecture Changes
+
+We prepared the codebase for production by containerizing both applications:
+
+**1. Backend (FastAPI/Python)**
+- `dealgraph-ai-backend/Dockerfile`: A production-ready Dockerfile using the official Python 3.11 image to serve the API via Uvicorn.
+- `dealgraph-ai-backend/.dockerignore`: Excludes local SQLite databases, pycache, and virtual environments from the image.
+
+**2. Frontend (Vite/React)**
+- `dealgraph-ai-frontend/Dockerfile`: A multi-stage Dockerfile that first builds the Vite React app, and then serves the static files using a lightweight Nginx web server.
+- `dealgraph-ai-frontend/nginx.conf`: Custom Nginx configuration to handle React's client-side routing.
+- `dealgraph-ai-frontend/.dockerignore`: Excludes `node_modules` and local environment files.
+
+### Step-by-Step Deployment Verification
+
+By linking this GitHub repository directly to Google Cloud Run, any pushes to the `main` branch will automatically trigger a new build and deployment for both services.
+
+To deploy this project yourself:
+1. Navigate to the **Google Cloud Console -> Cloud Run**.
+2. Click **Create Service** and select **Continuously deploy from a repository**.
+3. Link your GitHub account and select this repository.
+4. Set the build source directory to `dealgraph-ai-backend` for the API service.
+5. Create a second service pointing the source to `dealgraph-ai-frontend`. **Note:** You must set the `VITE_API_URL` environment variable on the frontend service to point to the backend's live URL.
 
 ## 🛠️ Local Development
 
